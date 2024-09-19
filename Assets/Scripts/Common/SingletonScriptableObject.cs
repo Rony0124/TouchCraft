@@ -29,7 +29,7 @@ namespace Common
                             if(asset.name != typeof(T).Name)
                                 continue;
                             
-                            _instance = Instantiate(assets.First());
+                            _instance = Instantiate(asset);
                             _isInstantiated = true;
                             
                             if (_instance.IsNotDestroyed) {

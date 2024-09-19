@@ -1,3 +1,4 @@
+using System;
 using Input;
 using UnityEngine;
 using Util;
@@ -6,6 +7,13 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private PlayerMovement playerMovement;
+
+        private void Awake()
+        {
+            playerMovement = GetComponent<PlayerMovement>();
+        }
+
         private void OnEnable()
         {
             PlayerInputHandler.Instance.OnInputTriggered += OnInputAction;
@@ -22,16 +30,6 @@ namespace Player
             }
         }
 
-        private void Move()
-        {
-            var direction = PlayerInputHandler.Instance.localInputInfo.InputAxis;
-            if (direction != Vector2.zero)
-            {
-                playerMovement.Execute(direction);
-                return;
-            }
-
-            playerMovement.Cancel();
-        }
+    
     }
 }
