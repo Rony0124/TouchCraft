@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
 
-namespace Input
+namespace PlayerInput
 {
     [Serializable]
     [CreateAssetMenu(fileName = "PlayerInputHandler", menuName = "SSO/PlayerInputHandler")]

@@ -1,5 +1,4 @@
-using System;
-using Input;
+using PlayerInput;
 using UnityEngine;
 using Util;
 

@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Input;
+using PlayerInput;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour

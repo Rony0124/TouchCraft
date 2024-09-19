@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
 
-namespace Input
+namespace PlayerInput
 {
     public class PlayerInputCallback : PlayerInputActions.IPlayerActions
     {
