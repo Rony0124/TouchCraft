@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         var axis = PlayerInputHandler.Instance.localInputInfo.InputAxis;
         if (axis != Vector2.zero)
         {
-            var direction = Vector3.right * axis.y + Vector3.forward * axis.x;
+            var direction = Vector3.right * axis.x + Vector3.forward * axis.y;
             Execute(direction);
             return;
         }
