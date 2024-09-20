@@ -13,6 +13,7 @@ namespace PlayerInput
         public struct InputInfo
         {
             public Vector2 InputAxis;
+            public Vector2 CamAxis;
         }
 
         public InputInfo localInputInfo;

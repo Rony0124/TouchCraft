@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Button",
+                    "id": "545547f7-fd77-4590-b580-9e92d4f7771d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -70,6 +79,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "29ffa22f-5d41-4dd1-a433-857954b8f6d6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "PC",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -85,7 +105,7 @@
                     "isOR": false
                 },
                 {
-                    "devicePath": "<Joystick>",
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

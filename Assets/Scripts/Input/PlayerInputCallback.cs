@@ -23,5 +23,13 @@ namespace PlayerInput
             
             OnInputTriggered?.Invoke(PlayerInputKey.Move);
         }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            var camAxis = context.ReadValue<Vector2>();
+            _handler.localInputInfo.CamAxis = camAxis;
+            
+            OnInputTriggered?.Invoke(PlayerInputKey.Look);
+        }
     }
 }
