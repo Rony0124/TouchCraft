@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 364283133}
   - component: {fileID: 364283135}
   - component: {fileID: 364283134}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,8 +1604,9 @@ GameObject:
   - component: {fileID: 1545630063}
   - component: {fileID: 1545630062}
   - component: {fileID: 1545630064}
+  - component: {fileID: 1545630065}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1759,6 +1760,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSpeed: 3.5
+--- !u!114 &1545630065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545630056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d419fa939014d47b0fe69a7aacbb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 5
+  viewAngle: 142
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4
+  targetsInSight: []
 --- !u!1 &1906646377
 GameObject:
   m_ObjectHideFlags: 0
