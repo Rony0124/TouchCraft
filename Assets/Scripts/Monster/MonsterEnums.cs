@@ -5,7 +5,9 @@ namespace Monster
       public enum MonsterAIState
       {
             Idle,
-            FollowingPath
+            FollowingPath,
+            TargetInSight,
+            TargetInAttackArea
       }
 
 }

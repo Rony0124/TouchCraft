@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -6,10 +7,15 @@ namespace Monster
 {
     public class MonsterFOV : MonoBehaviour
     {
+        public Action onAttack;
+        public Action onFollowTarget;
+        
         [Tooltip("시야 영역의 반지름과 시야 각도")]
         public float viewRadius;
         [Range(0, 360)]
         public float viewAngle;
+
+        [SerializeField] private float attackRange;
    
         //타겟 layer, 장애물 layer
         [SerializeField] private LayerMask targetMask, obstacleMask;
@@ -28,11 +34,8 @@ namespace Monster
             targetsInSight.Clear();
         
             // viewRadius를 반지름으로 한 원 영역 내 targetMask 레이어인 콜라이더를 모두 가져옴
-            const int maxColliders = 10;
-            var hitColliders = new Collider[maxColliders];
-        
-            var size = Physics.OverlapSphereNonAlloc(transform.position, viewRadius, hitColliders, targetMask);
-            foreach (var hit in hitColliders)
+            Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+            foreach (var hit in targetsInViewRadius)
             {
                 if(hit == null)
                     continue;
@@ -51,10 +54,16 @@ namespace Monster
                     // 타겟으로 가는 레이캐스트에 obstacleMask가 걸리지 않으면 visibleTargets에 Add
                     if (Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                         continue;
+                    
+                    targetsInSight.Add(target);
                 
-                    if (dstToTarget > 0.2f)
+                    if (dstToTarget <= attackRange)
                     {
-                        targetsInSight.Add(target);
+                        onAttack?.Invoke();
+                    }
+                    else
+                    {
+                        onFollowTarget?.Invoke();
                     }
                 }
             }
