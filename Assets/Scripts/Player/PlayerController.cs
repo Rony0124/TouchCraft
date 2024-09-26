@@ -1,10 +1,9 @@
-using PlayerInput;
+using System;
 using UnityEngine;
-using Util;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour
+    public partial class PlayerController : MonoBehaviour
     {
         private PlayerMovement playerMovement;
 
@@ -15,20 +14,12 @@ namespace Player
 
         private void OnEnable()
         {
-            PlayerInputHandler.Instance.OnInputTriggered += OnInputAction;
+            InitInput();
         }
 
-        private void OnInputAction(PlayerInputKey playerInputKey)
+        private void OnDisable()
         {
-            switch (playerInputKey)
-            {
-                case PlayerInputKey.Move:
-                case PlayerInputKey.None:
-                default:
-                    break;
-            }
+            DisableInput();
         }
-
-    
     }
 }

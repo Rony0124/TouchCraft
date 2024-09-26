@@ -111,7 +111,7 @@ namespace Monster
                 if (remainingDistance < 1f && _attackDuration < Time.time)
                 {
                     _navMeshAgent.enabled = false;
-                    _attackDuration = Time.time + 3;
+                    _attackDuration = Time.time + 5;
                     Debug.Log($"Attack the target {_fov.targetsInSight[0].name}");
                 }
             }
