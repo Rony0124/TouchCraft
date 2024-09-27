@@ -1,14 +1,21 @@
-on: [push, pull_request]
+on:
+  push:
+      branches:
+        - build
 
 jobs:
-  buildForAllSupportedPlatforms:
+  buildForWindowsAndLinux:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         targetPlatform:
-          - Android # Build an Android .apk standalone app.
+          - StandaloneWindows64
+          - StandaloneLinux64
+          #- Android # Build an Android .apk standalone app.
+    outputs:
+      buildVersion: ${{ steps.buildStep.outputs.buildVersion }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -17,11 +24,15 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ matrix.targetPlatform }}
-          restore-keys: Library-
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**',
+            'ProjectSettings/**') }}
+          restore-keys:  
+            Library-${{ matrix.targetPlatform }}-
+            Library-
       - if: matrix.targetPlatform == 'Android'
         uses: jlumbroso/free-disk-space@v1.3.1
       - uses: game-ci/unity-builder@v4
+        id: buildStep
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
