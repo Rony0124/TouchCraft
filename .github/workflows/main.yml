@@ -5,7 +5,7 @@ on:
 
 jobs:
   buildForWindowsAndLinux:
-    name: Build for ${{ matrix.targetPlatform }}
+    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -29,8 +29,8 @@ jobs:
           restore-keys:  
             Library-${{ matrix.targetPlatform }}-
             Library-
-      - if: matrix.targetPlatform == 'Android'
-        uses: jlumbroso/free-disk-space@v1.3.1
+      #- if: matrix.targetPlatform == 'Android'
+       # uses: jlumbroso/free-disk-space@v1.3.1
       - uses: game-ci/unity-builder@v4
         id: buildStep
         env:
