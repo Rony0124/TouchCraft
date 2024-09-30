@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameplayActor : MonoBehaviour
+namespace GameplayAbilitySystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public partial class GameplayActor : MonoBehaviour
     {
-        
-    }
+        private Animator _animator;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            
+            foreach (var defaultAbility in defaultAbilities)
+            {
+                if (defaultAbility == null)
+                {
+                    Debug.LogWarning($"Default ability is null in {name}");
+                    continue;
+                }
+                
+                grantedAbilities.Add(defaultAbility, default);
+            }
+        }
     }
 }

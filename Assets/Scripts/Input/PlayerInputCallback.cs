@@ -7,7 +7,7 @@ namespace PlayerInput
 {
     public class PlayerInputCallback : PlayerInputActions.IPlayerActions
     {
-        public PlayerInputCallback(PlayerInputHandler handler)
+        public PlayerInputCallback(PlayerInputHandler handler)  
         {
             _handler = handler;
         }

@@ -7,7 +7,7 @@ namespace GameplayAbilitySystem.Task
     public class FindClueTask : GameplayTask
     {
         public override async UniTask Execute(GameplayAbilitySO ability, GameplayActor sourceActor,
-            GameplayActor targetSpec)
+            GameplayActor.TargetSpec targetSpec)
         {
             await UniTask.CompletedTask;
         }

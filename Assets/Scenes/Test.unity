@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 364283133}
   - component: {fileID: 364283135}
   - component: {fileID: 364283134}
+  - component: {fileID: 364283136}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
@@ -565,6 +566,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90212f25e3370af449d76cb1e638dc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Player.PlayerController, Assembly-CSharp
+  interactAbilities:
+    m_Keys: []
+    m_Values: []
+  interactableFinder: {fileID: 0}
 --- !u!143 &364283134
 CharacterController:
   m_ObjectHideFlags: 0
@@ -604,6 +609,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Player.PlayerMovement, Assembly-CSharp
   velocity: 7
+--- !u!114 &364283136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364283127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f021c3ba0734944eb96e65c1f35c36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameplayAbilitySystem.GameplayActor, Assembly-CSharp
+  defaultAbilities:
+  - {fileID: 11400000, guid: 0eb524c680e1c914b9c4446daa1db77f, type: 2}
 --- !u!1 &467688633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,7 +1774,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1db4f907918b69c4c8d0e7f8e14b1ba6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Monster.MonsterAI, Assembly-CSharp
   patrolSpeed: 3.5
   chaseSpeed: 7
 --- !u!114 &1545630065

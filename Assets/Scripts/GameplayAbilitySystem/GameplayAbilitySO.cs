@@ -12,6 +12,7 @@ namespace GameplayAbilitySystem
         {
             Self = 1 << 0,
             Actor = 1 << 1,
+            ClueItem = 1 << 2,
         }
         
         [Header("Targeting")] 
