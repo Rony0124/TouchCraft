@@ -4,6 +4,7 @@ namespace Util
     {
         None = 0,
         Move = 1,
-        Look = 2
+        Look = 2,
+        Interact = 3
     }
 }

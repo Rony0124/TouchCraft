@@ -2,7 +2,7 @@ using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
-namespace GameplayAbility
+namespace GameplayAbilitySystem
 {
     [CreateAssetMenu(menuName = "Gameplay Tag", fileName = "New Gameplay Tag", order = 101)]
     public class GameplayTagSO : ScriptableObject

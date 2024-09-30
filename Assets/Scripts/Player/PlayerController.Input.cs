@@ -19,7 +19,9 @@ namespace Player
         {
             switch (playerInputKey)
             {
-                case PlayerInputKey.Move:
+                case PlayerInputKey.Interact:
+                    
+                    break;
                 case PlayerInputKey.None:
                 default:
                     break;

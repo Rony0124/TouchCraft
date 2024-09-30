@@ -6,7 +6,7 @@ namespace Player
     public partial class PlayerController : MonoBehaviour
     {
         private PlayerMovement playerMovement;
-
+        
         private void Awake()
         {
             playerMovement = GetComponent<PlayerMovement>();

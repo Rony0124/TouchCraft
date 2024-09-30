@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SolidUtilities;
 
-namespace GameplayAbility
+namespace GameplayAbilitySystem
 {
     [Serializable]
     public class GameplayTag :  IComparable<GameplayTag>, IEquatable<GameplayTag>
@@ -15,7 +15,7 @@ namespace GameplayAbility
         
         public static GameplayTag FromString(string tagString)
         {
-            GameplayTag tag = default;
+            GameplayTag tag = new();
 
             int dotCount = tagString.CountChars('.');
             if (dotCount < 0)

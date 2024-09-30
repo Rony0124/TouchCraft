@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90212f25e3370af449d76cb1e638dc7a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Player.PlayerController, Assembly-CSharp
 --- !u!143 &364283134
 CharacterController:
   m_ObjectHideFlags: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 016707d22f8bfa84382d38ccf5f68b6f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Player.PlayerMovement, Assembly-CSharp
   velocity: 7
 --- !u!1 &467688633
 GameObject:
@@ -1928,7 +1928,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aedff6b610aab364bb67dcb7839a737c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Common.CinemachinePOVExtension, Assembly-CSharp
   horizontalSpeed: 3
   verticalSpeed: 3
   clampAngle: 80
