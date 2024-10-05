@@ -32,5 +32,16 @@ namespace PlayerInput
         {
             OnInputTriggered?.Invoke(PlayerInputKey.Interact);
         }
+        
+        public void OnRun(InputAction.CallbackContext context)
+        {
+            //TODO pressed/released 구분 추가!
+            OnInputTriggered?.Invoke(PlayerInputKey.Run);
+        }
+        
+        public void OnCrouch(InputAction.CallbackContext context)
+        {
+            OnInputTriggered?.Invoke(PlayerInputKey.Crouch);
+        }
     }
 }

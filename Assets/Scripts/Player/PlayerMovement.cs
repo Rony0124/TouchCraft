@@ -8,8 +8,12 @@ namespace Player
     public class PlayerMovement : MonoBehaviour
     {
         [Header("Speed")]
-        [SerializeField] private float velocity = 1f;
+        [SerializeField] private float defaultVelocity = 7f;
+        [SerializeField] private float runVelocity = 11f;
 
+        public bool isRun { get; set; }
+        
+        private float appliedVelocity => isRun ? runVelocity : defaultVelocity;
         private Transform cameraTransform;
         private CharacterController characterController;
         private bool isMoving = false;
@@ -36,7 +40,7 @@ namespace Player
                 direction = cameraTransform.forward * direction.z + cameraTransform.right * direction.x;
                 direction.y = 0;
                 
-                characterController.Move(direction.normalized * (velocity * Time.deltaTime));
+                characterController.Move(direction.normalized * (appliedVelocity * Time.deltaTime));
                 
                 isMoving = true;
                 return;

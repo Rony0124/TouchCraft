@@ -1,3 +1,4 @@
+using System.Linq;
 using GameplayAbilitySystem;
 using InGame.Item;
 using PlayerInput;
@@ -33,6 +34,10 @@ namespace Player
                     OnInteract();
                     
                     break;
+                case PlayerInputKey.Run:
+                    OnRun();
+                    
+                    break;
                 case PlayerInputKey.None:
                 default:
                     break;
@@ -41,12 +46,28 @@ namespace Player
 
         private void OnInteract()
         {
+            if(interactableFinder == null)
+                return;
+            
             var target = interactableFinder.targetItem;
             if(!target)
                 return;
 
             var interactable = target.GetComponent<Interactable>();
-            
+            var targetActor = target.GetComponent<GameplayActor>();
+
+            if (interactAbilities.TryGetValue(interactable.interactTag, out var gameplayAbility))
+            {
+                GameplayActor.TargetSpec targetSpec = new();
+                targetSpec.tags.Add(interactable.interactTag);
+                targetSpec.actor = targetActor;
+                _actor.CastAbility(gameplayAbility, targetSpec);
+            }
+        }
+
+        private void OnRun()
+        {
+            _playerMovement.isRun = true;
         }
     }
 }
