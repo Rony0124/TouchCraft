@@ -10,10 +10,19 @@ namespace PlayerInput
     [CreateAssetMenu(fileName = "PlayerInputHandler", menuName = "SSO/PlayerInputHandler")]
     public class PlayerInputHandler : SingletonScriptableObject<PlayerInputHandler>
     {
+        public struct PressInputInfo
+        {
+            public bool PressedTime;
+            public bool IsPressing;
+        }
+        
         public struct InputInfo
         {
             public Vector2 InputAxis;
             public Vector2 CamAxis;
+
+            public bool IsRunning;
+            public bool IsCrouching;
         }
 
         public InputInfo localInputInfo;

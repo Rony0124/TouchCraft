@@ -10,9 +10,6 @@ namespace Common
         [SerializeField] private float verticalSpeed = 10;
         [SerializeField] private float clampAngle = 80;
         
-        [Header("Target")]
-        [SerializeField] private Transform lookTarget;
-        
         private PlayerInputHandler playerInputHandler;
         private Vector3 startingRotation = Vector3.zero;
 

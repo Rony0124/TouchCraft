@@ -30,18 +30,18 @@ namespace PlayerInput
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            OnInputTriggered?.Invoke(PlayerInputKey.Interact);
+            if(context.performed)
+                OnInputTriggered?.Invoke(PlayerInputKey.Interact);
         }
         
         public void OnRun(InputAction.CallbackContext context)
         {
-            //TODO pressed/released 구분 추가!
-            OnInputTriggered?.Invoke(PlayerInputKey.Run);
+            _handler.localInputInfo.IsRunning = context.action.IsInProgress();
         }
         
         public void OnCrouch(InputAction.CallbackContext context)
         {
-            OnInputTriggered?.Invoke(PlayerInputKey.Crouch);
+            _handler.localInputInfo.IsCrouching = context.action.IsInProgress();
         }
     }
 }

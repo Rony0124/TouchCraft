@@ -35,10 +35,6 @@ namespace Player
                     OnInteract();
                     
                     break;
-                case PlayerInputKey.Run:
-                    OnRun();
-                    
-                    break;
                 case PlayerInputKey.None:
                 default:
                     break;
@@ -68,11 +64,6 @@ namespace Player
                 targetSpec.tags.Add(interactable.interactTag);
                 _actor.CastAbility(gameplayAbility, targetSpec);
             }
-        }
-
-        private void OnRun()
-        {
-            characterMovement.isRun = true;
         }
     }
 }
