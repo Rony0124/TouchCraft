@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using System.Linq;
+using AYellowpaper.SerializedCollections;
 using GameplayAbilitySystem;
 using InGame.Item;
 using PlayerInput;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Util;
 
 namespace Player
@@ -58,9 +59,13 @@ namespace Player
 
             if (interactAbilities.TryGetValue(interactable.interactTag, out var gameplayAbility))
             {
-                GameplayActor.TargetSpec targetSpec = new();
+                GameplayActor.TargetSpec targetSpec = new()
+                {
+                    tags = new List<GameplayTagSO>(),
+                    actor = targetActor
+                };
+                
                 targetSpec.tags.Add(interactable.interactTag);
-                targetSpec.actor = targetActor;
                 _actor.CastAbility(gameplayAbility, targetSpec);
             }
         }

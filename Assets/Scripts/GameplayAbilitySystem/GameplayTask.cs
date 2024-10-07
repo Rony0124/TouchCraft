@@ -10,7 +10,7 @@ namespace GameplayAbilitySystem
         [NonSerialized]
         protected CancellationTokenSource CancellationTokenSource;
         
-        public bool CanExecute(GameplayAbilitySO ability, GameplayActor sourceActor, in GameplayActor.TargetSpec targetSpec)
+        public virtual bool CanExecute(GameplayAbilitySO ability, GameplayActor sourceActor, in GameplayActor.TargetSpec targetSpec)
         {
             return false;
         }
