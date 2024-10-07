@@ -1,3 +1,4 @@
+using Character;
 using Cinemachine.Utility;
 using PlayerInput;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 namespace Player
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovement : MonoBehaviour
+    public class CharacterMovement : MonoBehaviour
     {
         [Header("Speed")]
         [SerializeField] private float defaultVelocity = 7f;
@@ -16,12 +17,14 @@ namespace Player
         private float appliedVelocity => isRun ? runVelocity : defaultVelocity;
         private Transform cameraTransform;
         private CharacterController characterController;
+        private CharacterAnimator characterAnimator;
         private bool isMoving = false;
     
-        public bool IsOngoing => isMoving;
+        public bool IsMoving => isMoving;
     
         private void Awake() {
             characterController = GetComponent<CharacterController>();
+            characterAnimator = GetComponentInChildren<CharacterAnimator>();
             cameraTransform = Camera.main.transform;
         }
 
@@ -29,6 +32,8 @@ namespace Player
         {
             SetPlayerRotation();
             Move();
+            
+            characterAnimator.MovementUpdated(this);
         }
 
         private void Move()

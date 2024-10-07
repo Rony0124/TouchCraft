@@ -6,12 +6,12 @@ namespace Player
 {
     public partial class PlayerController : MonoBehaviour
     {
-        private PlayerMovement _playerMovement;
+        private CharacterMovement characterMovement;
         private GameplayActor _actor;
         
         private void Awake()
         {
-            _playerMovement = GetComponent<PlayerMovement>();
+            characterMovement = GetComponent<CharacterMovement>();
             _actor = GetComponent<GameplayActor>();
         }
 

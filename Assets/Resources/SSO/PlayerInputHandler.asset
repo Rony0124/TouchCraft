@@ -11,5 +11,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60a20c012a0f926439992643385c0a1b, type: 3}
   m_Name: PlayerInputHandler
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: PlayerInput.PlayerInputHandler, Assembly-CSharp
   isNotDestroyed: 1

@@ -67,7 +67,7 @@ namespace Player
 
         private void OnRun()
         {
-            _playerMovement.isRun = true;
+            characterMovement.isRun = true;
         }
     }
 }
