@@ -11,12 +11,13 @@ namespace Monster
         [SerializeField] private float patrolSpeed;
         [SerializeField] private float chaseSpeed;
         
+        [Header("Attack")]
+        [SerializeField] private float attackDuration;
+        
         private NavMeshAgent _navMeshAgent;
         private MonsterDestination _targetDestination;
         private MonsterAIState _aiState = MonsterAIState.Idle;
         private MonsterFOV _fov;
-
-        private float _attackDuration;
 
         private void Awake()
         {
@@ -51,7 +52,7 @@ namespace Monster
                     break;
                 
                 case MonsterAIState.TargetInAttackArea:
-                    if (_attackDuration >= Time.time)
+                    if (attackDuration >= Time.time)
                     {
                         SetNewDestination();
                     }
@@ -108,10 +109,10 @@ namespace Monster
             
             if (_navMeshAgent.TryGetPathRemainingDistance(out var remainingDistance))
             {
-                if (remainingDistance < 1f && _attackDuration < Time.time)
+                if (remainingDistance < 1f && attackDuration < Time.time)
                 {
                     _navMeshAgent.enabled = false;
-                    _attackDuration = Time.time + 5;
+                    attackDuration = Time.time + 5;
                     Debug.Log($"Attack the target {_fov.targetsInSight[0].name}");
                 }
             }
