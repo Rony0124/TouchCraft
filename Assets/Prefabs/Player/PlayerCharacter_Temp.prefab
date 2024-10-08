@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 4651057954072104594}
   - component: {fileID: 7520564176656524477}
   - component: {fileID: 8877474202885079978}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCharacter_Temp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,8 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Player.PlayerController, Assembly-CSharp
   interactAbilities:
-    m_Keys: []
-    m_Values: []
+    _serializedList:
+    - Key: {fileID: 11400000, guid: 1df58ac9057d7ab48b409a97dccde77c, type: 2}
+      Value: {fileID: 11400000, guid: 0eb524c680e1c914b9c4446daa1db77f, type: 2}
   interactableFinder: {fileID: 8863842260062178385}
 --- !u!114 &7520564176656524477
 MonoBehaviour:
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Player.CharacterMovement, Assembly-CSharp
   defaultVelocity: 7
+  crouchVelocity: 3
   runVelocity: 11
 --- !u!114 &8877474202885079978
 MonoBehaviour:
