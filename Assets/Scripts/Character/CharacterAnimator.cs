@@ -18,7 +18,7 @@ namespace Character
 
         public void MovementUpdated(CharacterMovement movement)
         {
-            _animator.SetBool(IsCrouchingHash,movement.IsCrouching);
+            _animator.SetBool(IsCrouchingHash, movement.IsCrouching);
             _animator.SetBool(IsRunningHash, movement.IsRunning);
             _animator.SetBool(IsMovingHash, movement.IsMoving);
         }

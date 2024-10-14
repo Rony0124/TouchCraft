@@ -1,10 +1,26 @@
+using System;
 using Character;
-using Cinemachine.Utility;
 using PlayerInput;
 using UnityEngine;
 
 namespace Player
 {
+    [Serializable]
+    public class GravitySettings
+    {
+        public float Gravity = 20.0f; // Gravity applied when the player is airborne
+        public float GroundedGravity = 5.0f; // A constant gravity that is applied when the player is grounded
+        public float MaxFallSpeed = 40.0f; // The max speed at which the player can fall
+    }
+    
+    [Serializable]
+    public class GroundSettings
+    {
+        public LayerMask GroundLayers; // Which layers are considered as ground
+        public float SphereCastRadius = 0.35f; // The radius of the sphere cast for the grounded check
+        public float SphereCastDistance = 0.15f; // The distance below the character's capsule used for the sphere cast grounded check
+    }
+    
     [RequireComponent(typeof(CharacterController))]
     public class CharacterMovement : MonoBehaviour
     {
@@ -13,15 +29,22 @@ namespace Player
         [SerializeField] private float crouchVelocity = 3f;
         [SerializeField] private float runVelocity = 11f;
         
+        public GravitySettings GravitySettings;
+        public GroundSettings GroundSettings;
+        
         private float appliedVelocity;
+        private float verticalSpeed;
         private Transform cameraTransform;
+        
+        private bool isGrounded;
+        
         private CharacterController characterController;
         private CharacterAnimator characterAnimator;
         
         public bool IsMoving { get;set; }
-        
         public bool IsRunning { get; set; }
         public bool IsCrouching { get; set; }
+        public bool IsGrounded => isGrounded;
         
         private void Awake() {
             characterController = GetComponent<CharacterController>();
@@ -31,6 +54,8 @@ namespace Player
 
         private void Update()
         {
+            UpdateGrounded();
+            
             SetPlayerRotation();
             Move();
             
@@ -42,12 +67,21 @@ namespace Player
             var axis = PlayerInputHandler.Instance.localInputInfo.InputAxis;
             IsRunning = PlayerInputHandler.Instance.localInputInfo.IsRunning;
             IsCrouching = PlayerInputHandler.Instance.localInputInfo.IsCrouching;
-                
+
+            if (isGrounded)
+            {
+                verticalSpeed = -GravitySettings.GroundedGravity;
+            }
+            else
+            {
+                verticalSpeed = Mathf.MoveTowards(verticalSpeed, -GravitySettings.MaxFallSpeed, GravitySettings.Gravity * Time.deltaTime);
+            }
+            
+            Vector3 moveDir = new Vector3(axis.x, 0, axis.y);
             if (axis != Vector2.zero)
             {
-                var direction = new Vector3(axis.x, 0, axis.y);
-                direction = cameraTransform.forward * direction.z + cameraTransform.right * direction.x;
-                direction.y = 0;
+                moveDir = cameraTransform.forward * moveDir.z + cameraTransform.right * moveDir.x;
+                moveDir.y = 0;
 
                 appliedVelocity = IsRunning ? runVelocity : defaultVelocity;
                 if (IsCrouching)
@@ -55,13 +89,16 @@ namespace Player
                     appliedVelocity = crouchVelocity;
                 }
                 
-                characterController.Move(direction.normalized * (appliedVelocity * Time.deltaTime));
-                
                 IsMoving = true;
-                return;
+            }
+            else
+            {
+                IsMoving = false;
             }
 
-            Cancel();
+            var horizontalMove = moveDir.normalized * appliedVelocity;
+            var verticalMove = verticalSpeed * Vector3.up;
+            characterController.Move((horizontalMove + verticalMove) * Time.deltaTime);
         }
         
         private void SetPlayerRotation()
@@ -70,9 +107,30 @@ namespace Player
             eulerAngles.y = cameraTransform.eulerAngles.y;
             transform.localRotation = Quaternion.Euler(eulerAngles);
         }
+        
+        private void UpdateGrounded()
+        {
+            isGrounded = CheckGrounded() && verticalSpeed <= 0.0f;
+        }
+        
+        private bool CheckGrounded()
+        {
+            bool isGround = Physics.CheckSphere(
+                CheckGroundSpherePosition(), GroundSettings.SphereCastRadius, GroundSettings.GroundLayers, QueryTriggerInteraction.Ignore);
 
-        private void Cancel() {
-            IsMoving = false;
+            return isGrounded;
+        }
+        
+        private Vector3 CheckGroundSpherePosition()
+        {
+            Vector3 spherePosition = transform.position;
+            spherePosition.y = transform.position.y + GroundSettings.SphereCastRadius - GroundSettings.SphereCastDistance;
+            return spherePosition;
+        }
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(CheckGroundSpherePosition(), GroundSettings.SphereCastRadius);
         }
     }
 }

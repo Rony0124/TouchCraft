@@ -83,7 +83,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 387224893382782664}
-  - {fileID: 7719486788001202372}
   - {fileID: 4341497834255878699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,6 +144,16 @@ MonoBehaviour:
   defaultVelocity: 7
   crouchVelocity: 3
   runVelocity: 11
+  GravitySettings:
+    Gravity: 20
+    GroundedGravity: 5
+    MaxFallSpeed: 40
+  GroundSettings:
+    GroundLayers:
+      serializedVersion: 2
+      m_Bits: 0
+    SphereCastRadius: 0.35
+    SphereCastDistance: 0.15
 --- !u!114 &8877474202885079978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,12 +192,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8966142680073759136}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.658, z: 0.122}
+  m_LocalRotation: {x: 0.0075389147, y: -0.0066091255, z: -0.0009177057, w: 0.9999494}
+  m_LocalPosition: {x: 0.03, y: 0.065, z: 0.108}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8010349580654759060}
+  m_Father: {fileID: 2402527222378432270}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &204082003924584739
 PrefabInstance:
@@ -256,7 +265,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -6664634447986749907, guid: 47d16d4551f97894aace135f63995bf5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7719486788001202372}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 47d16d4551f97894aace135f63995bf5, type: 3}
       insertIndex: -1
@@ -308,3 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc98e1e7380098848b22ee5ba90af82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Character.CharacterAnimator, Assembly-CSharp
+--- !u!4 &2402527222378432270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -6664634447986749907, guid: 47d16d4551f97894aace135f63995bf5, type: 3}
+  m_PrefabInstance: {fileID: 204082003924584739}
+  m_PrefabAsset: {fileID: 0}
