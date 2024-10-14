@@ -49,7 +49,8 @@ namespace Player
         private void Awake() {
             characterController = GetComponent<CharacterController>();
             characterAnimator = GetComponentInChildren<CharacterAnimator>();
-            cameraTransform = Camera.main.transform;
+            if (Camera.main != null) 
+                cameraTransform = Camera.main.transform;
         }
 
         private void Update()
